@@ -1,0 +1,61 @@
+### 생성
+POST {{local}}/v1/advertisement
+Content-Type: application/json
+
+{
+  "accountId": 1,
+  "name": "리니지M",
+  "os": "AOS",
+  "type": "CPI",
+  "startDate": "2021-09-20T00:00:00+09:00",
+  "endDate": "2021-09-30T23:59:59+09:00",
+  "total": 10000000,
+  "daily": 333333,
+  "unitPrice": 3000,
+  "unitPriceByDollar": 2.57,
+  "actualUnitPrice": 3000,
+  "totalDailyCap": 3000,
+  "dailyCap": 100,
+  "downloadUrl": "www.daum.net/downloadUrl",
+  "isLimitOfTotal": false,
+  "isLimitOfDaily": false,
+  "isLimitByDailyCap": false,
+  "isLimitByTotalDailyCap": false
+}
+
+### 수정
+PUT {{local}}/v1/advertisement/10
+Content-Type: application/json
+
+{
+  "accountId": 1,
+  "name": "리니지M",
+  "os": "AOS",
+  "type": "CPI",
+  "startDate": "2021-09-20T00:00:00+09:00",
+  "endDate": "2021-09-30T23:59:59+09:00",
+  "total": 100000,
+  "daily": 333333,
+  "unitPrice": 2222,
+  "unitPriceByDollar": 3.999,
+  "actualUnitPrice": 3000,
+  "totalDailyCap": 3000,
+  "dailyCap": 100,
+  "isLimitOfTotal": true,
+  "isLimitOfDaily": true,
+  "isLimitByDailyCap": true,
+  "isLimitByTotalDailyCap": true
+}
+
+### 삭제
+DELETE {{local}}/v1/advertisement/10
+Content-Type: application/json
+
+### 조회
+GET {{local}}/v1/advertisement/1
+Content-Type: application/json
+
+### 리스트 조회
+### 조회
+GET {{local}}/v1/advertisement
+Content-Type: application/json

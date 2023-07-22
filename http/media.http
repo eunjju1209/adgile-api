@@ -1,0 +1,41 @@
+### 조회
+GET {{local}}/v1/media/1
+Content-Type: application/json
+
+### 리스트 조회
+GET {{local}}/v1/media
+Content-Type: application/json
+
+
+### 생성
+POST {{local}}/v1/media
+Content-Type: application/json
+
+{
+  "userId" : 1,
+  "name": "매체 id",
+  "manager" : "딤딩지",
+  "email" : "eunjju1209@gmail.com",
+  "clickUrl" :  "click_id={clickid}&p_id={aff_id}&adid={adid}&idfa={ios_idfa}",
+  "installPostback" : "clickid={click_id}&aff_id={p_id}&adid={adid}=ios_idfa={idfa}",
+  "eventPostback" :  "clickid={click_id}&aff_id={p_id}&adid={adid}=ios_idfa={idfa}&event_name={even"
+}
+
+### 수정
+PUT {{local}}/v1/media/1
+Content-Type: application/json
+
+{
+  "userId" : 1,
+  "status": "APPROVAL",
+  "name": "매체 ids",
+  "manager" : "담당자",
+  "email" : "샬라샬라@샬라.com",
+  "clickUrl" :  "adid={adid}&idfa={ios_idfa}",
+  "installPostback" : "adid={adid}=ios_idfa={idfa}",
+  "eventPostback" :  "clickid={click_id}&aff_id={p_id}&adid={adid}=ios_idfa={idfa}&event_name={even"
+}
+
+### 삭제
+DELETE {{local}}/v1/media/2
+Content-Type: application/json
