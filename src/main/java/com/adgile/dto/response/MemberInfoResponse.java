@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class UserInfoResponse {
+public class MemberInfoResponse {
 
     private Long id;
     private Boolean isDomestic;
     private UserTypeEnum type;
-    private String userId;
+    private String memberId;
 
     // 매체사 - 법인명
     // 광고주 - 광고주명

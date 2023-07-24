@@ -11,7 +11,7 @@ public class MediaConditional {
 
     private Long id;
 
-    private Long userId;
+    private Long memberId;
 
     private MediaStatusEnum status;
 
@@ -24,9 +24,9 @@ public class MediaConditional {
     private String eventPostback;
 
     @Builder
-    public MediaConditional(Long id, Long userId, MediaStatusEnum status, String name, String manager, String email, String clickUrl, String installPostback, String eventPostback) {
+    public MediaConditional(Long id, Long memberId, MediaStatusEnum status, String name, String manager, String email, String clickUrl, String installPostback, String eventPostback) {
         this.id = id;
-        this.userId = userId;
+        this.memberId = memberId;
         this.status = status;
         this.name = name;
         this.manager = manager;

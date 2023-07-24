@@ -1,4 +1,4 @@
-package com.adgile.repository;
+package com.adgile.repository.Media;
 
 import com.adgile.domain.Media;
 import com.adgile.domain.conditional.MediaConditional;

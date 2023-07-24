@@ -35,6 +35,4 @@ public class BaseTimeEntity {
         this.deletedAt = ZonedDateTime.now();
     }
 
-
-
 }

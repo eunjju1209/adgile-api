@@ -1,24 +1,24 @@
 ### 조회
-GET {{local}}/v1/user/1
+GET {{local}}/v1/member/1
 Content-Type: application/json
 
 ### 리스트
-GET http://{{local}}/v1/user
+GET http://{{local}}/v1/member
 Content-Type: application/json
 
 ### id check
-GET {{local}}/v1/user/check/doyeon1123
+GET {{local}}/v1/member/check/doyeon1123
 Content-Type: application/json
 
 ### 생성
-POST {{local}}/v1/user
+POST {{local}}/v1/member
 Content-Type: application/json
 
 {
   "isDomestic": true,
   "type":  0,
   "userType": 1,
-  "userId" : "doyeon11234",
+  "memberId" : "1234",
   "name" : "도연111112",
   "manager" : "과장",
   "email" : "doyeon@test.com",
@@ -27,14 +27,14 @@ Content-Type: application/json
 }
 
 ### 수정
-PUT {{local}}/v1/user/1
+PUT {{local}}/v1/member/1
 Content-Type: application/json
 
 {
   "isDomestic": false,
   "type": 1,
   "userType": 1,
-  "userId" : "doyeon12",
+  "memberId" : "doyeon12",
   "name" : "도연",
   "manager" : "대리",
   "email" : "doyeon@shallwead.com",
@@ -43,5 +43,5 @@ Content-Type: application/json
 }
 
 ### 삭제
-DELETE {{local}}/v1/user/1
+DELETE {{local}}/v1/member/1
 Content-Type: application/json

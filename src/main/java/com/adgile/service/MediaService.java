@@ -2,15 +2,15 @@ package com.adgile.service;
 
 import com.adgile.domain.Media;
 import com.adgile.domain.conditional.MediaConditional;
-import com.adgile.domain.conditional.UserConditional;
+import com.adgile.domain.conditional.MemberConditional;
 import com.adgile.dto.request.MediaCreateRequest;
 import com.adgile.dto.request.MediaUpdateRequest;
 import com.adgile.dto.response.MediaInfoResponse;
 import com.adgile.exceptions.BusinessException;
 import com.adgile.exceptions.ErrorCode;
 import com.adgile.mapper.MediaMapperV2;
-import com.adgile.repository.MediaRepository;
-import com.adgile.repository.UserRepository;
+import com.adgile.repository.Media.MediaRepository;
+import com.adgile.repository.Member.MemberRepository;
 import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MediaService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository userRepository;
     private final MediaRepository mediaRepository;
     private final MediaMapperV2 mediaMapper;
 
@@ -52,12 +52,13 @@ public class MediaService {
 
     public void doRegister(MediaCreateRequest request) {
 
-        // userId 기준으로 찾아보기
-        UserConditional where = UserConditional.builder()
-                .id(request.getUserId())
+        // memberId 기준으로 찾아보기
+        MemberConditional where = MemberConditional
+                .builder()
+                .id(request.getMemberId())
                 .build();
 
-        userRepository.findUser(where)
+        userRepository.findMember(where)
                         .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_EXIST));
 
         mediaRepository.save(request.toEntity());
@@ -66,11 +67,12 @@ public class MediaService {
     @Transactional
     public void doModify(Long id, MediaUpdateRequest request) {
 
-        UserConditional where = UserConditional.builder()
-                .id(request.getUserId())
+        MemberConditional where = MemberConditional
+                .builder()
+                .id(request.getMemberId())
                 .build();
 
-        userRepository.findUser(where)
+        userRepository.findMember(where)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_EXIST));
 
         MediaConditional mediaWhere = MediaConditional.builder()

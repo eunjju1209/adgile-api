@@ -17,7 +17,7 @@ import java.util.List;
 public interface MediaMapperV2 {
 
 	@Mapping(target="id", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getId())")
-	@Mapping(target="userId", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getUserId())")
+	@Mapping(target="memberId", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getMemberId())")
 	@Mapping(target="name", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getName())")
 	@Mapping(target="status", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getStatus())")
 	@Mapping(target="code", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getCode())")
@@ -26,8 +26,8 @@ public interface MediaMapperV2 {
 	@Mapping(target="clickUrl", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getClickUrl())")
 	@Mapping(target="installPostback", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getInstallPostback())")
 	@Mapping(target="eventPostback", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getEventPostback())")
-	@Mapping(target="isDomestic", expression = "java(tuple.get(1, com.adgile.domain.User.class).getIsDomestic())")
-	@Mapping(target="userName", expression = "java(tuple.get(1, com.adgile.domain.User.class).getName())")
+	@Mapping(target="isDomestic", expression = "java(tuple.get(1, com.adgile.domain.Member.class).getIsDomestic())")
+	@Mapping(target="userName", expression = "java(tuple.get(1, com.adgile.domain.Member.class).getName())")
 	MediaInfoResponse mediaToInfo(Tuple tuple);
 
 	List<MediaInfoResponse> mediumToInfo(List<Tuple> tuple);

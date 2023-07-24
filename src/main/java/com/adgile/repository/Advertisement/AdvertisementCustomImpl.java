@@ -1,4 +1,4 @@
-package com.adgile.repository;
+package com.adgile.repository.Advertisement;
 
 import com.adgile.domain.Advertisement;
 import com.adgile.domain.conditional.AdvertisementConditional;
@@ -28,7 +28,7 @@ public class AdvertisementCustomImpl implements AdvertisementCustom {
 						.selectFrom(advertisement)
 						.where(
 								eqId(where.getId()),
-								eqUserId(where.getUserId()),
+								eqMemberId(where.getMemberId()),
 								eqName(where.getName()),
 								eqOs(where.getOs()),
 								eqType(where.getType()),
@@ -47,7 +47,7 @@ public class AdvertisementCustomImpl implements AdvertisementCustom {
 						.leftJoin(budget).on(budget.advertisementId.eq(advertisement.id), advertisement.deletedAt.isNull())
 						.where(
 								eqId(where.getId()),
-								eqUserId(where.getUserId()),
+								eqMemberId(where.getMemberId()),
 								eqName(where.getName()),
 								eqOs(where.getOs()),
 								eqType(where.getType()),
@@ -66,7 +66,7 @@ public class AdvertisementCustomImpl implements AdvertisementCustom {
 				.leftJoin(budget).on(budget.advertisementId.eq(advertisement.id), advertisement.deletedAt.isNull())
 				.where(
 						eqId(where.getId()),
-						eqUserId(where.getUserId()),
+						eqMemberId(where.getMemberId()),
 						eqName(where.getName()),
 						eqOs(where.getOs()),
 						eqType(where.getType()),
@@ -87,7 +87,7 @@ public class AdvertisementCustomImpl implements AdvertisementCustom {
 				.on(budget.advertisementId.eq(advertisement.id), advertisement.deletedAt.isNull())
 				.where(
 						eqId(where.getId()),
-						eqUserId(where.getUserId()),
+						eqMemberId(where.getMemberId()),
 						eqName(where.getName()),
 						eqOs(where.getOs()),
 						eqType(where.getType()),
@@ -104,8 +104,8 @@ public class AdvertisementCustomImpl implements AdvertisementCustom {
 		return id != null ? advertisement.id.eq(id) : null;
 	}
 
-	private BooleanExpression eqUserId(Long userId) {
-		return userId != null ? advertisement.userId.eq(userId) : null;
+	private BooleanExpression eqMemberId(Long memberId) {
+		return memberId != null ? advertisement.memberId.eq(memberId) : null;
 	}
 
 	private BooleanExpression eqName(String name) {

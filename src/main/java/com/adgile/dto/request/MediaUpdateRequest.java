@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class MediaUpdateRequest {
 
     // 계정ID
-    private Long userId;
+    private Long memberId;
 
     private MediaStatusEnum status;
 

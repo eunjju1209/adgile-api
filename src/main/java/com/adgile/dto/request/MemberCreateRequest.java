@@ -1,6 +1,6 @@
 package com.adgile.dto.request;
 
-import com.adgile.domain.User;
+import com.adgile.domain.Member;
 import com.adgile.domain.enums.CurrencyEnum;
 import com.adgile.domain.enums.UserTypeEnum;
 import lombok.Builder;
@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class UserCreateRequest {
+public class MemberCreateRequest {
 
     private Boolean isDomestic;
 
-    private UserTypeEnum type;
+    private Member.MemberType type;
 
     // unique 한 값
-    private String userId;
+    private String memberId;
 
     // 매체사 - 법인명
     // 광고주 - 광고주명
@@ -35,10 +35,10 @@ public class UserCreateRequest {
     private String invoiceEmail;
 
     @Builder
-    public UserCreateRequest(Boolean isDomestic, UserTypeEnum type, String userId, String name, String manager, String email, CurrencyEnum currencyType, String invoiceEmail) {
+    public MemberCreateRequest(Boolean isDomestic, Member.MemberType type, String memberId, String name, String manager, String email, CurrencyEnum currencyType, String invoiceEmail) {
         this.isDomestic = isDomestic;
         this.type = type;
-        this.userId = userId;
+        this.memberId = memberId;
         this.name = name;
         this.manager = manager;
         this.email = email;
@@ -46,11 +46,11 @@ public class UserCreateRequest {
         this.invoiceEmail = invoiceEmail;
     }
 
-    public User toEntity() {
-        return User.builder()
+    public Member toEntity() {
+        return Member.builder()
                 .isDomestic(isDomestic)
                 .type(type)
-                .userId(userId)
+                .memberId(memberId)
                 .name(name)
                 .manager(manager)
                 .email(email)

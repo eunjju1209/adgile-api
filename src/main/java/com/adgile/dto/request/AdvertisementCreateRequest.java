@@ -64,7 +64,7 @@ public class AdvertisementCreateRequest {
 	public Advertisement toEntity() {
 		return Advertisement
 				.builder()
-				.userId(accountId)
+				.memberId(accountId)
 				.name(name)
 				.os(os)
 				.type(type)

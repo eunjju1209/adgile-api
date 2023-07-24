@@ -1,4 +1,4 @@
-package com.adgile.repository;
+package com.adgile.repository.Advertisement;
 
 import com.adgile.domain.Advertisement;
 import com.adgile.domain.conditional.AdvertisementConditional;

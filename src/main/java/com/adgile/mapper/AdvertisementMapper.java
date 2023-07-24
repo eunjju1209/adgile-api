@@ -20,7 +20,7 @@ public interface AdvertisementMapper {
 //	AdvertisementMapper INSTANCE = Mappers.getMapper(AdvertisementMapper.class);
 
 	@Mapping(target = "id", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getId())")
-	@Mapping(target = "accountId", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getUserId())")
+	@Mapping(target = "accountId", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getMemberId())")
 	@Mapping(target = "name", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getName())")
 	@Mapping(target = "os", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getOs())")
 	@Mapping(target = "type", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getType())")

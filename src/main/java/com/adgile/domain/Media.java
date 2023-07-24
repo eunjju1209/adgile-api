@@ -17,7 +17,7 @@ public class Media extends BaseTimeEntity {
     private Long id;
 
     // 매체 id
-    private Long userId;
+    private Long memberId;
 
     // 상태
     @Enumerated(EnumType.STRING)
@@ -44,9 +44,9 @@ public class Media extends BaseTimeEntity {
     private String eventPostback;
 
     @Builder
-    public Media(Long id, Long userId, MediaStatusEnum status, String code, String name, String manager, String email, String clickUrl, String installPostback, String eventPostback) {
+    public Media(Long id, Long memberId, MediaStatusEnum status, String code, String name, String manager, String email, String clickUrl, String installPostback, String eventPostback) {
         this.id = id;
-        this.userId = userId;
+        this.memberId = memberId;
         this.status = status;
         this.code = code;
         this.name = name;
@@ -58,7 +58,7 @@ public class Media extends BaseTimeEntity {
     }
 
     public void update(MediaUpdateRequest request) {
-        this.userId = request.getUserId();
+        this.memberId = request.getMemberId();
         this.status = request.getStatus();
         this.name = request.getName();
         this.manager = request.getManager();

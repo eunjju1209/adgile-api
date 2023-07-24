@@ -4,7 +4,7 @@ import com.adgile.domain.Advertisement;
 import com.adgile.domain.Budget;
 import com.adgile.domain.conditional.AdvertisementConditional;
 import com.adgile.domain.conditional.BudgetConditional;
-import com.adgile.domain.conditional.UserConditional;
+import com.adgile.domain.conditional.MemberConditional;
 import com.adgile.dto.request.AdvertisementCreateRequest;
 import com.adgile.dto.request.AdvertisementUpdateRequest;
 import com.adgile.dto.response.AdvertisementInfoResponse;
@@ -12,9 +12,9 @@ import com.adgile.dto.response.AdvertisementListResponse;
 import com.adgile.exceptions.BusinessException;
 import com.adgile.exceptions.ErrorCode;
 import com.adgile.mapper.AdvertisementMapperV2;
-import com.adgile.repository.AdvertisementRepository;
-import com.adgile.repository.BudgetRepository;
-import com.adgile.repository.UserRepository;
+import com.adgile.repository.Advertisement.AdvertisementRepository;
+import com.adgile.repository.Budget.BudgetRepository;
+import com.adgile.repository.Member.MemberRepository;
 import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdvertisementService {
 
-	private final UserRepository userRepository;
+	private final MemberRepository userRepository;
 	private final AdvertisementRepository advertisementRepository;
 	private final BudgetRepository budgetRepository;
 	private final AdvertisementMapperV2 advertisementMapper;
@@ -67,8 +67,8 @@ public class AdvertisementService {
 	public void doRegister(AdvertisementCreateRequest request) {
 		// user ID 있는지 체크해주기
 		userRepository
-				.findUser(
-						UserConditional
+				.findMember(
+						MemberConditional
 								.builder()
 								.id(request.getAccountId())
 								.build()
@@ -82,9 +82,9 @@ public class AdvertisementService {
 	@Transactional
 	public void doModify(AdvertisementUpdateRequest request, Long id) {
 
-		// userId 있는지 체크하기
+		// memberId 있는지 체크하기
 		userRepository
-				.findUser(UserConditional
+				.findMember(MemberConditional
 						          .builder()
 						          .id(request.getAccountId())
 						          .build())

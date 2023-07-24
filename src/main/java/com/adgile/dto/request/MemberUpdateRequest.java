@@ -1,5 +1,6 @@
 package com.adgile.dto.request;
 
+import com.adgile.domain.Member;
 import com.adgile.domain.enums.CurrencyEnum;
 import com.adgile.domain.enums.UserTypeEnum;
 import lombok.Data;
@@ -7,13 +8,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UserUpdateRequest {
+public class MemberUpdateRequest {
     private Boolean isDomestic;
 
-    private UserTypeEnum type;
+    private Member.MemberType type;
 
     // unique 한 값
-    private String userId;
+    private String memberId;
 
     // 매체사 - 법인명
     // 광고주 - 광고주명

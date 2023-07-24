@@ -1,5 +1,6 @@
 package com.adgile.domain.conditional;
 
+import com.adgile.domain.Member;
 import com.adgile.domain.enums.CurrencyEnum;
 import com.adgile.domain.enums.UserTypeEnum;
 import lombok.Builder;
@@ -8,16 +9,16 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UserConditional {
+public class MemberConditional {
 
     private Long id;
 
     private Boolean isDomestic;
 
-    private UserTypeEnum type;
+    private Member.MemberType type;
 
     // unique 한 값
-    private String userId;
+    private String memberId;
 
     // 매체사 - 법인명
     // 광고주 - 광고주명
@@ -36,11 +37,11 @@ public class UserConditional {
     private String invoiceEmail;
 
     @Builder
-    public UserConditional(Long id, Boolean isDomestic, UserTypeEnum type, String userId, String name, String manager, String email, CurrencyEnum currencyType, String invoiceEmail) {
+    public MemberConditional(Long id, Boolean isDomestic, Member.MemberType type, String memberId, String name, String manager, String email, CurrencyEnum currencyType, String invoiceEmail) {
         this.id = id;
         this.isDomestic = isDomestic;
         this.type = type;
-        this.userId = userId;
+        this.memberId = memberId;
         this.name = name;
         this.manager = manager;
         this.email = email;

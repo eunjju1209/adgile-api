@@ -1,9 +1,8 @@
-package com.adgile.repository;
+package com.adgile.repository.Member;
 
-import com.adgile.domain.User;
-import com.adgile.domain.conditional.UserConditional;
+import com.adgile.domain.Member;
+import com.adgile.domain.conditional.MemberConditional;
 import com.adgile.domain.enums.CurrencyEnum;
-import com.adgile.domain.enums.UserTypeEnum;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -11,86 +10,86 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.Optional;
 
-import static com.adgile.domain.QUser.user;
+import static com.adgile.domain.QMember.member;
 import static org.springframework.util.StringUtils.hasText;
 
 @RequiredArgsConstructor
-public class UserCustomImpl implements UserCustom {
+public class MemberCustomImpl implements MemberCustom {
 
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Optional<User> findUser(UserConditional where) {
+    public Optional<Member> findMember(MemberConditional where) {
         return Optional.ofNullable(
-                queryFactory.selectFrom(user)
+                queryFactory.selectFrom(member)
                         .where(
                                 eqId(where.getId()),
                                 eqDomestic(where.getIsDomestic()),
                                 eqType(where.getType()),
-                                eqUserId(where.getUserId()),
+                                eqMemberId(where.getMemberId()),
                                 eqName(where.getName()),
                                 eqManager(where.getManager()),
                                 eqEmail(where.getEmail()),
                                 eqCurrencyType(where.getCurrencyType()),
                                 eqInvoiceEmail(where.getInvoiceEmail()),
-                                user.deletedAt.isNull()
+                                member.deletedAt.isNull()
                         )
                         .fetchOne()
         );
     }
 
     @Override
-    public List<User> findUsers(UserConditional where) {
-        return queryFactory.selectFrom(user)
+    public List<Member> findMembers(MemberConditional where) {
+        return queryFactory.selectFrom(member)
                 .where(
                         eqId(where.getId()),
                         eqDomestic(where.getIsDomestic()),
                         eqType(where.getType()),
-                        eqUserId(where.getUserId()),
+                        eqMemberId(where.getMemberId()),
                         eqName(where.getName()),
                         eqManager(where.getManager()),
                         eqEmail(where.getEmail()),
                         eqCurrencyType(where.getCurrencyType()),
                         eqInvoiceEmail(where.getInvoiceEmail()),
-                        user.deletedAt.isNull()
+                        member.deletedAt.isNull()
                 )
                 .fetch();
     }
 
     private BooleanExpression eqId(Long id) {
-        return id != null ? user.id.eq(id) : null;
+        return id != null ? member.id.eq(id) : null;
     }
 
     private BooleanExpression eqDomestic(Boolean domestic) {
-        return domestic != null ? user.isDomestic.eq(domestic) : null;
+        return domestic != null ? member.isDomestic.eq(domestic) : null;
     }
 
-    private BooleanExpression eqType(UserTypeEnum type) {
-        return type != null ? user.type.eq(type) : null;
+    private BooleanExpression eqType(Member.MemberType type) {
+        return type != null ? member.type.eq(type) : null;
     }
 
-    private BooleanExpression eqUserId(String userId) {
-        return hasText(userId) ? user.userId.eq(userId) : null;
+    private BooleanExpression eqMemberId(String memberId) {
+        return hasText(memberId) ? member.memberId.eq(memberId) : null;
     }
 
     private BooleanExpression eqName(String name) {
-        return hasText(name) ? user.name.eq(name) : null;
+        return hasText(name) ? member.name.eq(name) : null;
     }
 
     private BooleanExpression eqManager(String manager) {
-        return hasText(manager) ? user.manager.eq(manager) : null;
+        return hasText(manager) ? member.manager.eq(manager) : null;
     }
 
     private BooleanExpression eqEmail(String email) {
-        return hasText(email) ? user.email.eq(email) : null;
+        return hasText(email) ? member.email.eq(email) : null;
     }
 
     private BooleanExpression eqCurrencyType(CurrencyEnum currencyType) {
-        return currencyType != null ? user.currencyType.eq(currencyType) : null;
+        return currencyType != null ? member.currencyType.eq(currencyType) : null;
     }
 
     private BooleanExpression eqInvoiceEmail(String invoiceEmail) {
-        return hasText(invoiceEmail) ? user.invoiceEmail.eq(invoiceEmail) : null;
+        return hasText(invoiceEmail) ? member.invoiceEmail.eq(invoiceEmail) : null;
     }
 
 }

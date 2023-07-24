@@ -17,7 +17,7 @@ import java.util.List;
 public interface AdvertisementMapperV2 {
 
 	@Mapping(target = "id", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getId())")
-	@Mapping(target = "accountId", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getUserId())")
+	@Mapping(target = "accountId", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getMemberId())")
 	@Mapping(target = "name", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getName())")
 	@Mapping(target = "os", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getOs())")
 	@Mapping(target = "type", expression = "java(tuple.get(0, com.adgile.domain.Advertisement.class).getType())")

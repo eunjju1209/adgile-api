@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class MediaInfoResponse {
 
     private Long id;
-    private Long userId;
+    private Long memberId;
 
     private MediaStatusEnum status;
 

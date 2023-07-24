@@ -1,10 +1,8 @@
-package com.adgile.repository;
+package com.adgile.repository.Media;
 
 import com.adgile.domain.Media;
 import com.adgile.domain.conditional.MediaConditional;
-import com.adgile.dto.response.MediaInfoResponse;
 import com.querydsl.core.Tuple;
-import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.Optional;
 
-import static com.adgile.domain.QUser.user;
+import static com.adgile.domain.QMember.member;
 import static com.adgile.domain.QMedia.media;
 import static org.springframework.util.StringUtils.hasText;
 
@@ -28,7 +26,7 @@ public class MediaCustomImpl implements MediaCustom {
 						.selectFrom(media)
 						.where(
 								eqId(where.getId()),
-								eqUserId(where.getUserId()),
+								eqMemberId(where.getMemberId()),
 								eqName(where.getName()),
 								eqManager(where.getManager()),
 								eqEmail(where.getEmail()),
@@ -47,13 +45,13 @@ public class MediaCustomImpl implements MediaCustom {
 	//    public Optional<Tuple> findMediaOfUser(MediaConditional where) {
 	//        Optional<Tuple> tuple = Optional.ofNullable(
 	//                queryFactory.select(
-	//                                media, user
+	//                                media, member
 	//                        )
 	//                        .from(media)
-	//                        .leftJoin(user).on(user.id.eq(media.userId), user.deletedAt.isNull())
+	//                        .leftJoin(member).on(member.id.eq(media.memberId), member.deletedAt.isNull())
 	//                        .where(
 	//                                eqId(where.getId()),
-	//                                eqUserId(where.getUserId()),
+	//                                eqMemberId(where.getUserId()),
 	//                                eqName(where.getName()),
 	//                                eqManager(where.getManager()),
 	//                                eqEmail(where.getEmail()),
@@ -76,7 +74,7 @@ public class MediaCustomImpl implements MediaCustom {
                                 Projections.fields(
                                         MediaInfoResponse.class,
                                         media.id,
-                                        media.userId,
+                                        media.memberId,
 //                                        media.status,
                                         media.name,
                                         media.manager,
@@ -84,16 +82,16 @@ public class MediaCustomImpl implements MediaCustom {
                                         media.clickUrl,
                                         media.installPostback,
                                         media.eventPostback,
-                                        user.isDomestic,
-                                        user.name.as("userName"),
-                                        user.id.as("userCode")
+                                        member.isDomestic,
+                                        member.name.as("memberName"),
+                                        member.id.as("memberCode")
                                 )
                         )
                         .from(media)
-                        .leftJoin(user).on(user.id.eq(media.userId), user.deletedAt.isNull())
+                        .leftJoin(member).on(member.id.eq(media.memberId), member.deletedAt.isNull())
                         .where(
                                 eqId(where.getId()),
-                                eqUserId(where.getUserId()),
+                                eqMemberId(where.getUserId()),
                                 eqName(where.getName()),
                                 eqManager(where.getManager()),
                                 eqEmail(where.getEmail()),
@@ -108,14 +106,14 @@ public class MediaCustomImpl implements MediaCustom {
 		return Optional.ofNullable(
 				queryFactory
 						.select(
-								media, user
+								media, member
 						       )
 						.from(media)
-						.leftJoin(user)
-						.on(user.id.eq(media.userId), user.deletedAt.isNull())
+						.leftJoin(member)
+						.on(member.id.eq(media.memberId), member.deletedAt.isNull())
 						.where(
 								eqId(where.getId()),
-								eqUserId(where.getUserId()),
+								eqMemberId(where.getMemberId()),
 								eqName(where.getName()),
 								eqManager(where.getManager()),
 								eqEmail(where.getEmail()),
@@ -132,14 +130,14 @@ public class MediaCustomImpl implements MediaCustom {
 	public List<Tuple> findMediumOfUser(MediaConditional where) {
 		List<Tuple> fetch = queryFactory
 				.select(
-						media, user
+						media, member
 				       )
 				.from(media)
-				.leftJoin(user)
-				.on(user.id.eq(media.userId), user.deletedAt.isNull())
+				.leftJoin(member)
+				.on(member.id.eq(media.memberId), member.deletedAt.isNull())
 				.where(
 						eqId(where.getId()),
-						eqUserId(where.getUserId()),
+						eqMemberId(where.getMemberId()),
 						eqName(where.getName()),
 						eqManager(where.getManager()),
 						eqEmail(where.getEmail()),
@@ -159,7 +157,7 @@ public class MediaCustomImpl implements MediaCustom {
 	//                        Projections.fields(
 	//                                MediaInfoResponse.class,
 	//                                media.id,
-	//                                media.userId,
+	//                                media.memberId,
 	////                                        media.status,
 	//                                media.name,
 	//                                media.manager,
@@ -167,16 +165,16 @@ public class MediaCustomImpl implements MediaCustom {
 	//                                media.clickUrl,
 	//                                media.installPostback,
 	//                                media.eventPostback,
-	//                                user.isDomestic,
-	//                                user.name.as("userName"),
-	//                                user.id.as("userCode")
+	//                                member.isDomestic,
+	//                                member.name.as("memberName"),
+	//                                member.id.as("memberCode")
 	//                        )
 	//                )
 	//                .from(media)
-	//                .leftJoin(user).on(user.id.eq(media.userId), user.deletedAt.isNull())
+	//                .leftJoin(member).on(member.id.eq(media.memberId), member.deletedAt.isNull())
 	//                .where(
 	//                        eqId(where.getId()),
-	//                        eqUserId(where.getUserId()),
+	//                        eqMemberId(where.getMemberId()()),
 	//                        eqName(where.getName()),
 	//                        eqManager(where.getManager()),
 	//                        eqEmail(where.getEmail()),
@@ -196,8 +194,8 @@ public class MediaCustomImpl implements MediaCustom {
 		return id != null ? media.id.eq(id) : null;
 	}
 
-	private BooleanExpression eqUserId(Long id) {
-		return id != null ? media.userId.eq(id) : null;
+	private BooleanExpression eqMemberId(Long id) {
+		return id != null ? media.memberId.eq(id) : null;
 	}
 
 	private BooleanExpression eqName(String name) {

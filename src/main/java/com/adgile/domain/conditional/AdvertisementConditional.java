@@ -14,7 +14,7 @@ public class AdvertisementConditional {
 
 	private Long id;
 
-	private Long userId;
+	private Long memberId;
 
 	private String name;
 
@@ -29,9 +29,9 @@ public class AdvertisementConditional {
 	private String downloadUrl;
 
 	@Builder
-	public AdvertisementConditional(Long id, Long userId, String name, OsEnum os, AdvertisementTypeEnum type, ZonedDateTime startDate, ZonedDateTime endDate, String downloadUrl) {
+	public AdvertisementConditional(Long id, Long memberId, String name, OsEnum os, AdvertisementTypeEnum type, ZonedDateTime startDate, ZonedDateTime endDate, String downloadUrl) {
 		this.id = id;
-		this.userId = userId;
+		this.memberId = memberId;
 		this.name = name;
 		this.os = os;
 		this.type = type;

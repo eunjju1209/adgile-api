@@ -19,7 +19,7 @@ public class Advertisement extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
+    private Long memberId;
 
     private String name;
 
@@ -36,9 +36,9 @@ public class Advertisement extends BaseTimeEntity {
     private String downloadUrl;
 
     @Builder
-    public Advertisement(Long id, Long userId, String name, OsEnum os, AdvertisementTypeEnum type, ZonedDateTime startDate, ZonedDateTime endDate, String downloadUrl) {
+    public Advertisement(Long id, Long memberId, String name, OsEnum os, AdvertisementTypeEnum type, ZonedDateTime startDate, ZonedDateTime endDate, String downloadUrl) {
         this.id = id;
-        this.userId = userId;
+        this.memberId = memberId;
         this.name = name;
         this.os = os;
         this.type = type;
@@ -48,7 +48,7 @@ public class Advertisement extends BaseTimeEntity {
     }
 
     public void update(AdvertisementUpdateRequest request) {
-        this.userId = request.getAccountId();
+        this.memberId = request.getAccountId();
         this.name = request.getName();
         this.os = request.getOs();
         this.type = request.getType();

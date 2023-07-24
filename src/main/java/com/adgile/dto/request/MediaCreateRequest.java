@@ -2,7 +2,6 @@ package com.adgile.dto.request;
 
 import com.adgile.domain.Media;
 import com.adgile.domain.enums.MediaStatusEnum;
-import com.adgile.repository.MediaRepository;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class MediaCreateRequest {
 
     // 계정ID
-    private Long userId;
+    private Long memberId;
 
     // 매체 명
     private String name;
@@ -35,8 +34,8 @@ public class MediaCreateRequest {
     private String eventPostback;
 
     @Builder
-    public MediaCreateRequest(Long userId, String name, String manager, String email, String clickUrl, String installPostback, String eventPostback) {
-        this.userId = userId;
+    public MediaCreateRequest(Long memberID, String name, String manager, String email, String clickUrl, String installPostback, String eventPostback) {
+        this.memberId = memberID;
         this.name = name;
         this.manager = manager;
         this.email = email;
@@ -47,7 +46,7 @@ public class MediaCreateRequest {
 
     public Media toEntity() {
         return Media.builder()
-                .userId(userId)
+                .memberId(memberId)
                 .name(name)
                 .manager(manager)
                 .email(email)

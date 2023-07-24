@@ -1,4 +1,4 @@
-package com.adgile.repository;
+package com.adgile.repository.Budget;
 
 import com.adgile.domain.Budget;
 import org.springframework.data.jpa.repository.JpaRepository;
