@@ -25,10 +25,24 @@ spring:
 
 ## logging
 logging:
+  config: classpath:logback-local.xml
   level:
     org:
       hibernate:
-        SQL: DEBUG
+        sql: DEBUG
+        type:
+          descriptor:
+            sql:
+              org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
-
+## cloud
+cloud:
+  aws:
+    credentials:
+      secret-key: { { accesskey } }
+      access-key:  { { secret-key } }
+    sqs:
+      queue:
+        name: { { name } }
+        url: https://sqs.ap-northeast-2.amazonaws.com/122312/{{name}}
 
